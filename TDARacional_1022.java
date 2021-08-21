@@ -36,34 +36,22 @@ import java.util.Scanner;
 public class TDARacional_1022 {
 
     private static List<Integer> somaFracao (int numerador1, int denominador1, int numerador2, int denominador2){
-        int denominadorFinal =  denominador1*denominador2;
-        int numeradorParcial1 = denominador2*numerador1;
-        int numeradorParcial2 = denominador1*numerador2;
-        int numeradorFinal = numeradorParcial1+numeradorParcial2;
-        List<Integer> soma = new ArrayList<>(Arrays.asList(numeradorFinal,denominadorFinal));
+        List<Integer> soma = new ArrayList<>(Arrays.asList(numerador1*denominador2+numerador2*denominador1,denominador1*denominador2));
         return soma;
     }
 
     private static List<Integer> subFracao (int numerador1, int denominador1, int numerador2, int denominador2){
-        int denominadorFinal =  denominador1*denominador2;
-        int numeradorParcial1 = denominador2*numerador1;
-        int numeradorParcial2 = denominador1*numerador2;
-        int numeradorFinal = numeradorParcial1-numeradorParcial2;
-        List<Integer> sub = new ArrayList<>(Arrays.asList(numeradorFinal,denominadorFinal));
+        List<Integer> sub = new ArrayList<>(Arrays.asList(numerador1*denominador2-numerador2*denominador1,denominador1*denominador2));
         return sub;
     }
 
     private static List<Integer> multFracao (int numerador1, int denominador1, int numerador2, int denominador2){
-        int denominadorFinal =  denominador1*denominador2;
-        int numeradorFinal = numerador1*numerador2;
-        List<Integer> mult = new ArrayList<>(Arrays.asList(numeradorFinal,denominadorFinal));
+        List<Integer> mult = new ArrayList<>(Arrays.asList(numerador1*numerador2,denominador1*denominador2));
         return mult;
     }
 
     private static List<Integer>divFracao (int numerador1, int denominador1, int numerador2, int denominador2){
-        int denominadorFinal =  denominador1*numerador2;
-        int numeradorFinal = numerador1*denominador2;
-        List<Integer> div = new ArrayList<>(Arrays.asList(numeradorFinal,denominadorFinal));
+        List<Integer> div = new ArrayList<>(Arrays.asList(numerador1*denominador2,denominador1*numerador2));
         return div;
     }
 
@@ -91,32 +79,13 @@ public class TDARacional_1022 {
     }
 
     private static Formula separaValores(String formulaTexto){
-        Integer itemAtual = 0;
         Formula formula = new Formula();
         String[] items = formulaTexto.split(" ");
-        int contador = 0;
-        for (String item : items){
-            if (contador !=1 && contador != 5) {
-                switch (contador){
-                    case 0:
-                        formula.setNumerador1(Integer.parseInt(item));
-                        break;
-                    case 2:
-                        formula.setDenominador1(Integer.parseInt(item));
-                        break;
-                    case 3:
-                        formula.setOperador(item.charAt(0));
-                        break;
-                    case 4:
-                        formula.setNumerador2(Integer.parseInt(item));
-                        break;
-                    case 6:
-                        formula.setDenominador2(Integer.parseInt(item));
-                        break;
-                }
-            }
-            contador++;
-        }
+        formula.setNumerador1(Integer.parseInt(items[0]));
+        formula.setDenominador1(Integer.parseInt(items[2]));
+        formula.setOperador(items[3].charAt(0));
+        formula.setNumerador2(Integer.parseInt(items[4]));
+        formula.setDenominador2(Integer.parseInt(items[6]));
         return formula;
     }
 
@@ -166,54 +135,23 @@ class Formula{
     private Integer denominador2;
     private Character operador;
 
-    public Integer getNumerador1() {
-        return numerador1;
-    }
+    public Integer getNumerador1() { return numerador1; }
 
-    public void setNumerador1(Integer numerador1) {
-        this.numerador1 = numerador1;
-    }
+    public void setNumerador1(Integer numerador1) { this.numerador1 = numerador1; }
 
-    public Integer getDenominador1() {
-        return denominador1;
-    }
+    public Integer getDenominador1() { return denominador1; }
 
-    public void setDenominador1(Integer denominador1) {
-        this.denominador1 = denominador1;
-    }
+    public void setDenominador1(Integer denominador1) { this.denominador1 = denominador1; }
 
-    public Integer getNumerador2() {
-        return numerador2;
-    }
+    public Integer getNumerador2() { return numerador2; }
 
-    public void setNumerador2(Integer numerador2) {
-        this.numerador2 = numerador2;
-    }
+    public void setNumerador2(Integer numerador2) { this.numerador2 = numerador2; }
 
-    public Integer getDenominador2() {
-        return denominador2;
-    }
+    public Integer getDenominador2() { return denominador2; }
 
-    public void setDenominador2(Integer denominador2) {
-        this.denominador2 = denominador2;
-    }
+    public void setDenominador2(Integer denominador2) { this.denominador2 = denominador2; }
 
-    public Character getOperador() {
-        return operador;
-    }
+    public Character getOperador() { return operador; }
 
-    public void setOperador(Character operador) {
-        this.operador = operador;
-    }
-
-    @Override
-    public String toString() {
-        return "Formula{" +
-                "numerador1=" + numerador1 +
-                ", denominador1=" + denominador1 +
-                ", numerador2=" + numerador2 +
-                ", denominador2=" + denominador2 +
-                ", operador=" + operador +
-                '}';
-    }
+    public void setOperador(Character operador) { this.operador = operador; }
 }
